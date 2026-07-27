@@ -62,7 +62,7 @@ export default function Footer({ onOpenModal }: { onOpenModal: () => void }) {
           <div>
             <div className="meta" style={{ color: 'rgba(244,245,247,0.4)', marginBottom: 16 }}>{t(ui.footer.social)}</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 11, fontSize: 15, color: 'rgba(244,245,247,0.75)' }}>
-              <a href="#" className="lk">Instagram</a>
+              <a href="https://www.instagram.com/loomit.devs/" target="_blank" rel="noopener noreferrer" className="lk">Instagram</a>
               <a href="#" className="lk">LinkedIn</a>
             </div>
           </div>

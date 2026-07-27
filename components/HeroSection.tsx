@@ -26,7 +26,7 @@ export default function HeroSection({ onOpenModal }: { onOpenModal: () => void }
         <div className="r2 hero-social" style={{ maxWidth: 230, textAlign: 'right' }}>
           <div className="meta" style={{ color: 'var(--muted)', marginBottom: 10 }}>{t(ui.hero.socialLabel)}</div>
           <div className="hero-social-links" style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 14 }}>
-            <a href="#" className="lk">Instagram</a>
+            <a href="https://www.instagram.com/loomit.devs/" target="_blank" rel="noopener noreferrer" className="lk">Instagram</a>
             <a href="#" className="lk">LinkedIn</a>
           </div>
         </div>
