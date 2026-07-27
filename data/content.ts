@@ -92,6 +92,7 @@ export const services = [
   { num: "03", title: { es: "APPS DE ESCRITORIO",  en: "DESKTOP APPS"       }, desc: { es: "Software para Windows, macOS y Linux.", en: "Software for Windows, macOS and Linux." } },
   { num: "04", title: { es: "DISEÑO DE PRODUCTO",  en: "PRODUCT DESIGN"     }, desc: { es: "De la idea al prototipo: UX, UI y sistemas de diseño.", en: "From idea to prototype: UX, UI and design systems." } },
   { num: "05", title: { es: "AUTOMATIZACIONES",    en: "AUTOMATION"         }, desc: { es: "Integraciones, flujos e IA aplicada a tu operación.", en: "Integrations, workflows and AI applied to your operation." } },
+  { num: "06", title: { es: "MODERNIZACIÓN DE SOFTWARE", en: "SOFTWARE MODERNIZATION" }, desc: { es: "Agarramos lo que ya tenés y lo ponemos al día: código, arquitectura y experiencia.", en: "We take what you already have and bring it up to date: code, architecture and experience." } },
 ];
 
 export const principles = [

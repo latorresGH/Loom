@@ -8,7 +8,7 @@ export default function FullBleedSection() {
 
   return (
     <section>
-      <div style={{ position: 'relative', height: '112vh', overflow: 'hidden' }}>
+      <div style={{ position: 'relative', height: '112dvh', overflow: 'hidden' }}>
         <div className="par" style={{ position: 'absolute', inset: '-16% 0', '--pf': '9%' } as React.CSSProperties}>
           <Image src="/bg-section.png" alt="" fill sizes="100vw" style={{ objectFit: 'cover' }} priority />
         </div>

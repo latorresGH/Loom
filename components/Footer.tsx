@@ -68,7 +68,7 @@ export default function Footer({ onOpenModal }: { onOpenModal: () => void }) {
           </div>
         </div>
       </div>
-      <div className="bebas drift" style={{ marginTop: 70, fontSize: 'clamp(110px, 30vw, 500px)', lineHeight: 0.72, whiteSpace: 'nowrap' }}>
+      <div className="bebas drift" style={{ marginTop: 70, fontSize: 'clamp(110px, 30vw, 500px)', lineHeight: 0.72, whiteSpace: 'nowrap', pointerEvents: 'none' }}>
         LOOM
       </div>
       <div

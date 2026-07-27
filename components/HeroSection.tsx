@@ -11,7 +11,7 @@ export default function HeroSection({ onOpenModal }: { onOpenModal: () => void }
       id="hero"
       style={{
         position: 'relative',
-        minHeight: '100vh',
+        minHeight: '100dvh',
         padding: '118px 34px 40px',
         display: 'flex',
         flexDirection: 'column',
@@ -23,22 +23,22 @@ export default function HeroSection({ onOpenModal }: { onOpenModal: () => void }
           <div className="meta" style={{ color: 'var(--muted)', marginBottom: 10 }}>{t(ui.hero.studioLabel)}</div>
           <div style={{ fontSize: 14, lineHeight: 1.5 }}>{t(ui.hero.studioDesc)}</div>
         </div>
-        <div className="r2" style={{ maxWidth: 230, textAlign: 'right' }}>
+        <div className="r2 hero-social" style={{ maxWidth: 230, textAlign: 'right' }}>
           <div className="meta" style={{ color: 'var(--muted)', marginBottom: 10 }}>{t(ui.hero.socialLabel)}</div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 14 }}>
+          <div className="hero-social-links" style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: 14 }}>
             <a href="#" className="lk">Instagram</a>
             <a href="#" className="lk">LinkedIn</a>
           </div>
         </div>
       </div>
 
-      <h1 className="bebas" style={{ margin: 'auto 0', fontSize: 'clamp(90px, 20vw, 340px)', lineHeight: 0.82, letterSpacing: '0.004em' }}>
+      <h1 className="bebas hero-title" style={{ margin: 'auto 0', lineHeight: 0.82, letterSpacing: '0.004em' }}>
         <span className="hline"><span>{t(ui.hero.line1)}</span></span>
-        <span className="hline" style={{ textAlign: 'right' }}><span>{t(ui.hero.line2)}</span></span>
+        <span className="hline hero-line2" style={{ textAlign: 'right' }}><span>{t(ui.hero.line2)}</span></span>
         <span className="hline"><span>{t(ui.hero.line3)}</span></span>
       </h1>
 
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 24, flexWrap: 'wrap' }}>
+      <div className="hero-bottom" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 24, flexWrap: 'wrap' }}>
         <div className="r2" style={{ maxWidth: 400 }}>
           <p style={{ fontSize: 16, lineHeight: 1.55, color: 'var(--muted)' }}>{t(ui.hero.sub)}</p>
           <a href="#services" className="lk" style={{ display: 'inline-block', marginTop: 12, fontSize: 14, fontWeight: 600 }}>
@@ -71,7 +71,7 @@ export default function HeroSection({ onOpenModal }: { onOpenModal: () => void }
           </span>
         </button>
       </div>
-      <div className="meta rf" style={{ position: 'absolute', bottom: 38, left: '50%', transform: 'translateX(-50%)', color: 'var(--muted)' }}>
+      <div className="meta rf hero-scroll" style={{ position: 'absolute', bottom: 38, left: '50%', transform: 'translateX(-50%)', color: 'var(--muted)' }}>
         {t(ui.hero.scroll)}
       </div>
     </header>
