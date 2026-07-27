@@ -4,9 +4,10 @@ import { z } from 'zod';
 import { contactSchema } from '@/lib/validations';
 import { ContactEmail } from '@/emails/ContactNotification';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+export const dynamic = 'force-dynamic';
 
 export async function POST(req: Request) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
   try {
     const body = await req.json();
     const data = contactSchema.parse(body);

@@ -119,5 +119,5 @@ export const marqueeItems = [
 ];
 
 export const contact = {
-  email: "hola@loom.com.ar",
+  email: "loomit.devs@gmail.com",
 };
