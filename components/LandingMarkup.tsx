@@ -36,7 +36,7 @@ export default function LandingMarkup({
         } as CSSProperties
       }
     >
-      <div data-herosec="1" style={{ position: "relative", height: "240vh" }}>
+      <div data-herosec="1" style={{ position: "relative", height: "240svh" }}>
         <div style={{ position: "sticky", top: "0", height: "100svh", overflow: "hidden" }}>
           <div data-gl="1" style={{ position: "absolute", inset: "0" }}></div>
           <header
@@ -679,7 +679,7 @@ export default function LandingMarkup({
         style={{
           position: "relative",
           zIndex: "2",
-          marginTop: "-22vh",
+          marginTop: "-22svh",
           padding: "clamp(40px,8vh,96px) clamp(20px,4vw,56px) clamp(80px,12vh,140px)",
           background: "#0A0A0A",
         }}
@@ -1718,7 +1718,7 @@ export default function LandingMarkup({
         style={{
           position: "relative",
           zIndex: "5",
-          height: "520vh",
+          height: "520svh",
           marginTop: "-125svh",
           background: "transparent",
           pointerEvents: "none",
@@ -2076,7 +2076,7 @@ export default function LandingMarkup({
             </div>
           </div>
         </div>
-        <div data-cpin="1" style={{ position: "relative", height: "320vh" }}>
+        <div data-cpin="1" style={{ position: "relative", height: "320svh" }}>
           <div style={{ position: "sticky", top: "0", height: "100svh", overflow: "hidden" }}>
             <div
               data-cframe="1"

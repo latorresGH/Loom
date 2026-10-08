@@ -8,6 +8,7 @@ const P = { accent: "#CFF27E", showWord: true, dispersion: 4 };
 
 export class LandingEngine {
   sp = 0;
+  vh = 0;
   dead = false;
   off = [];
   langHooks = [];
@@ -37,6 +38,19 @@ export class LandingEngine {
     const id = setInterval(() => { if (!this.dead) fn(); }, ms);
     this.off.push(() => clearInterval(id));
     return id;
+  }
+
+  // Stable viewport height: the "small" viewport (100svh), which is what the pinned panels use.
+  // window.innerHeight changes every time a phone's URL bar hides or shows, and made the
+  // scroll-driven math jump.
+  initViewport() {
+    const probe = document.createElement('div');
+    probe.style.cssText = 'position:fixed;top:0;left:0;width:0;height:100svh;visibility:hidden;pointer-events:none';
+    document.body.appendChild(probe);
+    const measure = () => { this.vh = probe.offsetHeight || window.innerHeight; };
+    measure();
+    this.on(window, 'resize', measure);
+    this.off.push(() => probe.remove());
   }
 
   refreshLang() {
@@ -112,6 +126,7 @@ export class LandingEngine {
 
   start() {
     this.dead = false;
+    this.initViewport();
     import('lenis').then((mod) => {
       if (this.dead) return;
       const Lenis = mod.default || mod.Lenis;
@@ -248,7 +263,7 @@ export class LandingEngine {
     const tick = () => {
       if (this.dead) return;
       raf = requestAnimationFrame(tick);
-      const r = heroSec.getBoundingClientRect(), span = r.height - window.innerHeight;
+      const r = heroSec.getBoundingClientRect(), span = r.height - this.vh;
       const target = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 0;
       this.sp += (target - this.sp) * 0.12;
       const p = Math.min(1, this.sp / 0.76), ex = ss(0.78, 0.98, this.sp);
@@ -269,8 +284,8 @@ export class LandingEngine {
       });
       const e = ss(0.84, 0.97, p);
       end.style.opacity = e;
-      end.style.transform = `translateY(${(1 - e) * 30 - ex * window.innerHeight * 0.95}px)`;
-      const mr = man.getBoundingClientRect(), vh = window.innerHeight;
+      end.style.transform = `translateY(${(1 - e) * 30 - ex * this.vh * 0.95}px)`;
+      const mr = man.getBoundingClientRect(), vh = this.vh;
       const mpT = Math.min(1, Math.max(0, (vh * 0.75 - mr.top) / (mr.height + vh * 0.15)));
       this.mp = (this.mp ?? 0) + (mpT - (this.mp ?? 0)) * 0.08;
       const mp = this.mp;
@@ -336,7 +351,7 @@ export class LandingEngine {
     const tick = () => {
       if (this.dead) return;
       raf = requestAnimationFrame(tick);
-      const vh = innerHeight, r = pin.getBoundingClientRect(), span = Math.max(1, r.height - vh);
+      const vh = this.vh, r = pin.getBoundingClientRect(), span = Math.max(1, r.height - vh);
       const p = cl(-r.top / span);
       sm += (p - sm) * 0.14;
       const a = eio(cl(sm / 0.28));
@@ -400,7 +415,7 @@ export class LandingEngine {
     const tick = () => {
       if (this.dead) return;
       raf = requestAnimationFrame(tick);
-      const vh = innerHeight, r = sec.getBoundingClientRect();
+      const vh = this.vh, r = sec.getBoundingClientRect();
       const c = cl((vh - r.top) / (vh * 0.9));
       sc += (c - sc) * 0.1;
       const ce = eo(sc);
@@ -680,7 +695,7 @@ export class LandingEngine {
       raf = 0;
       if (!vis || this.dead) return;
       const now = performance.now(), dt = Math.min(0.05, (now - last) / 1000); last = now;
-      const vh = window.innerHeight, r = sec.getBoundingClientRect();
+      const vh = this.vh, r = sec.getBoundingClientRect();
       const s = Math.max(0, -r.top);
       sm += (s - sm) * 0.1;
       const u = sm / vh, w = Math.max(0, u - 0.45) * 1.6;
