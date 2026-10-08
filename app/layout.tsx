@@ -1,23 +1,17 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Montserrat } from "next/font/google";
+import { Poppins } from "next/font/google";
 import { LangProvider } from "@/lib/lang";
 import "./globals.css";
 
-const bebasNeue = Bebas_Neue({
-  variable: "--font-bebas-neue",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
-  weight: "400",
+  weight: ["300", "400", "500", "600"],
 });
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-const title = "Loom — Estudio de desarrollo de software";
+const title = "Loom IT — Estudio digital";
 const description =
-  "Loom es una startup desarrolladora de software dedicada a crear las mejores experiencias digitales para startups y empresas que quieren moverse rápido.";
+  "Loom IT es un estudio digital. Diseñamos y desarrollamos sitios web, apps y automatizaciones a medida, desde cero.";
 
 export const metadata: Metadata = {
   title,
@@ -50,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${bebasNeue.variable} ${montserrat.variable}`}>
+    <html lang="es" className={poppins.variable}>
       <body>
         <LangProvider>{children}</LangProvider>
       </body>
