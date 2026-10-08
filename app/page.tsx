@@ -1,4 +1,5 @@
-// Placeholder until components/Landing.tsx lands (step 3).
+import Landing from "@/components/Landing";
+
 export default function Home() {
-  return null;
+  return <Landing />;
 }

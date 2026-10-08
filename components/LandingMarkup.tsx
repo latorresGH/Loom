@@ -4791,7 +4791,9 @@ export default function LandingMarkup({
             <a
               data-ctf="2"
               data-ctl="1"
-              href="#"
+              href="https://www.instagram.com/loomit.devs/"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 display: "flex",
                 flexDirection: "column",
@@ -4822,7 +4824,7 @@ export default function LandingMarkup({
                 }}
               >
                 <span style={{ position: "relative" }}>
-                  {"@loomit"}
+                  {"@loomit.devs"}
                   <span
                     data-ctu="1"
                     style={{
@@ -5699,6 +5701,11 @@ export default function LandingMarkup({
                     className="fc7"
                   ></textarea>
                 </label>
+                <span
+                  data-fm-err="1"
+                  role="alert"
+                  style={{ display: "none", fontSize: "13px", lineHeight: "1.4", color: "#FFB59A" }}
+                ></span>
               </div>
               <div
                 data-fstep="3"
