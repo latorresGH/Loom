@@ -145,7 +145,6 @@ export default function Landing() {
           <a href="https://www.instagram.com/loomit.devs/" target="_blank" rel="noopener noreferrer">
             {"Instagram"}
           </a>
-          <a href="#">{"LinkedIn"}</a>
         </div>
       </div>
     </div>

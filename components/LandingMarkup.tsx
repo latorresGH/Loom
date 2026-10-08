@@ -4727,64 +4727,6 @@ export default function LandingMarkup({
             <a
               data-ctf="1"
               data-ctl="1"
-              href="#"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "10px",
-                paddingTop: "16px",
-                borderTop: "1px solid #2A2A2A",
-                color: "#F3F2F2",
-              }}
-            >
-              <span
-                style={{
-                  fontSize: "11px",
-                  fontWeight: "500",
-                  letterSpacing: ".12em",
-                  textTransform: "uppercase",
-                  color: "#9B9797",
-                }}
-              >
-                {"WhatsApp"}
-              </span>
-              <span
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  gap: "12px",
-                  fontSize: "17px",
-                  fontWeight: "500",
-                }}
-              >
-                <span style={{ position: "relative" }}>
-                  {t("Message us")}
-                  <span
-                    data-ctu="1"
-                    style={{
-                      position: "absolute",
-                      left: "0",
-                      right: "0",
-                      bottom: "-4px",
-                      height: "1px",
-                      background: "var(--acc)",
-                      transform: "scaleX(0)",
-                      transformOrigin: "0 50%",
-                      transition: "transform .5s cubic-bezier(.16,1,.3,1)",
-                    }}
-                  ></span>
-                </span>
-                <span
-                  data-ctr="1"
-                  style={{ color: "var(--acc)", transition: "transform .5s cubic-bezier(.16,1,.3,1)" }}
-                >
-                  {"↗"}
-                </span>
-              </span>
-            </a>
-            <a
-              data-ctf="2"
-              data-ctl="1"
               href="https://www.instagram.com/loomit.devs/"
               target="_blank"
               rel="noopener noreferrer"
@@ -4819,64 +4761,6 @@ export default function LandingMarkup({
               >
                 <span style={{ position: "relative" }}>
                   {"@loomit.devs"}
-                  <span
-                    data-ctu="1"
-                    style={{
-                      position: "absolute",
-                      left: "0",
-                      right: "0",
-                      bottom: "-4px",
-                      height: "1px",
-                      background: "var(--acc)",
-                      transform: "scaleX(0)",
-                      transformOrigin: "0 50%",
-                      transition: "transform .5s cubic-bezier(.16,1,.3,1)",
-                    }}
-                  ></span>
-                </span>
-                <span
-                  data-ctr="1"
-                  style={{ color: "var(--acc)", transition: "transform .5s cubic-bezier(.16,1,.3,1)" }}
-                >
-                  {"↗"}
-                </span>
-              </span>
-            </a>
-            <a
-              data-ctf="3"
-              data-ctl="1"
-              href="#"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "10px",
-                paddingTop: "16px",
-                borderTop: "1px solid #2A2A2A",
-                color: "#F3F2F2",
-              }}
-            >
-              <span
-                style={{
-                  fontSize: "11px",
-                  fontWeight: "500",
-                  letterSpacing: ".12em",
-                  textTransform: "uppercase",
-                  color: "#9B9797",
-                }}
-              >
-                {"LinkedIn"}
-              </span>
-              <span
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  gap: "12px",
-                  fontSize: "17px",
-                  fontWeight: "500",
-                }}
-              >
-                <span style={{ position: "relative" }}>
-                  {"Loom IT"}
                   <span
                     data-ctu="1"
                     style={{

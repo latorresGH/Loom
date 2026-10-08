@@ -177,7 +177,6 @@ export const es: Record<string, string> = {
     "Contanos qué tenés en mente, aunque sea una idea a medio armar. Respondemos en menos de 24 horas con próximos pasos claros.",
   "Start a project": "Empezar un proyecto",
   Email: "Email",
-  "Message us": "Escribinos",
   "Back to top ": "Volver arriba ",
 
   // menu overlay (hand-written JSX, not generated)
