@@ -171,7 +171,7 @@ export const es: Record<string, string> = {
   // contact
   "Got an idea?": "¿Tenés una idea?",
   "Let's ": "Vamos a ",
-  build: "construirla",
+  build: "crearla",
   " it.": ".",
   "Tell us what you have in mind, even if it's just a rough idea. We reply within 24 hours with honest next steps.":
     "Contanos qué tenés en mente, aunque sea una idea a medio armar. Respondemos en menos de 24 horas con próximos pasos claros.",

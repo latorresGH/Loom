@@ -40,6 +40,7 @@ export default function LandingMarkup({
         <div style={{ position: "sticky", top: "0", height: "100svh", overflow: "hidden" }}>
           <div data-gl="1" style={{ position: "absolute", inset: "0" }}></div>
           <header
+            className="hdr"
             style={{
               position: "absolute",
               top: "0",
@@ -150,7 +151,7 @@ export default function LandingMarkup({
                 <span style={{ fontWeight: "300" }}>{"IT"}</span>
               </span>
             </a>
-            <div style={{ justifySelf: "end", display: "flex", alignItems: "center", gap: "20px" }}>
+            <div className="hdr-r" style={{ justifySelf: "end", display: "flex", alignItems: "center", gap: "20px" }}>
               <button
                 data-fade="1"
                 type="button"

@@ -17,3 +17,9 @@ body{scrollbar-width:none}
 .hv6:hover{border-color:#F3F2F2 !important}
 .fc7:focus{border-bottom-color:var(--acc) !important}
 .hv8:hover{color:#F3F2F2 !important}
+
+/* The language toggle is not in the mockup: tighten the header on phones so it still fits. */
+@media (max-width:480px){.hdr{gap:12px !important}.hdr-r{gap:12px !important}}
+
+/* "Proyectos" is wider than "Selected": at the mockup's 40px minimum it gets clipped on phones. */
+@media (max-width:480px){html[lang="es"] [data-sw]{font-size:32px !important}}
