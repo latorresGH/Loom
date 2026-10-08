@@ -14,12 +14,15 @@ const description =
   "Loom IT es un estudio digital. Diseñamos y desarrollamos sitios web, apps y automatizaciones a medida, desde cero.";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://loomit.com.ar"),
   title,
   description,
   openGraph: {
     title,
     description,
     type: "website",
+    url: "/",
+    siteName: "Loom IT",
   },
   twitter: {
     card: "summary_large_image",
