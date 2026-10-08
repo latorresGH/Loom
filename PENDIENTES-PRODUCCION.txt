@@ -1,0 +1,52 @@
+PENDIENTES PARA CUANDO SALGA A PRODUCCION CON loomit.com.ar
+==========================================================
+Anotado el 2026-10-08. Mientras tanto el sitio corre en un dominio de Vercel.
+
+
+1. DOMINIO
+----------
+- Pagar loomit.com.ar y apuntarlo al proyecto de Vercel.
+- El sitio ya usa https://loomit.com.ar como base de sus URLs
+  (metadataBase en app/layout.tsx). No hay que tocar codigo.
+- Hasta que el dominio este activo, la vista previa al compartir el link
+  (WhatsApp, Instagram, X) no va a mostrar la imagen, porque apunta a
+  loomit.com.ar. Es esperado; se arregla solo cuando el dominio funcione.
+- Probar despues: pegar el link en un chat de WhatsApp y ver que aparezca
+  la imagen con el logo y "loomIT".
+
+
+2. CORREO DEL FORMULARIO (Resend)
+---------------------------------
+- Cargar en Vercel (Settings > Environment Variables):
+    RESEND_API_KEY
+    CONTACT_EMAIL
+  Sin esas dos variables el formulario muestra "Algo salio mal".
+- El remitente es el de prueba de Resend (onboarding@resend.dev), que solo
+  entrega al mail duenio de la cuenta de Resend. Para mandar a otra casilla:
+  verificar loomit.com.ar en Resend y cambiar el "from" en
+  app/api/contact/route.ts (por ejemplo: Loom IT <contacto@loomit.com.ar>).
+- Nunca se probo un envio real. Mandar el formulario una vez y confirmar
+  que llega el mail.
+- La plantilla del mail (emails/ContactNotification.tsx) todavia dice
+  "Loom — loom.com.ar" en el pie. Pasarlo a "Loom IT — loomit.com.ar".
+  El remitente tambien dice "Loom Contact".
+
+
+3. GOOGLE
+---------
+- Declarar el logo de la organizacion con datos estructurados (JSON-LD)
+  apuntando a https://loomit.com.ar/logo-512.png. No esta hecho.
+- Dar de alta el sitio en Google Search Console una vez activo el dominio.
+- No hay sitemap ni robots.txt; agregarlos (app/sitemap.ts y app/robots.ts).
+
+
+4. CONTENIDO QUE HOY ES PROVISORIO
+----------------------------------
+- public/assets/work/work-1..4.png son imagenes de relleno generadas.
+  Reemplazarlas por capturas reales de proyectos (retrato 4:5, ~1080x1350).
+- /work es una pagina minima ("Los trabajos llegan pronto").
+- En el menu, "Proceso" y "Nosotros" no llevan a ninguna seccion.
+- El mail de contacto que se muestra es loomit.devs@gmail.com. El Instagram
+  ya es @loomit.social; revisar si el mail tambien cambia.
+- Titulo del hero en espaniol: ocupa 4 lineas a 1440 px (en ingles, 2).
+  Se arregla con un texto mas corto en data/i18n.ts.
