@@ -36,9 +36,13 @@ export default function LandingMarkup({
         } as CSSProperties
       }
     >
-      <div data-herosec="1" style={{ position: "relative", height: "240svh" }}>
-        <div style={{ position: "sticky", top: "0", height: "100svh", overflow: "hidden" }}>
+      <div data-herosec="1" style={{ position: "relative", height: "calc(var(--svh) * 140 + var(--lvh) * 100)" }}>
+        <div style={{ position: "sticky", top: "0", height: "calc(var(--lvh) * 100)", overflow: "hidden" }}>
           <div data-gl="1" style={{ position: "absolute", inset: "0" }}></div>
+          <div
+            data-safe="1"
+            style={{ position: "absolute", top: "0", left: "0", right: "0", height: "calc(var(--svh) * 100)" }}
+          >
           <header
             className="hdr"
             style={{
@@ -201,7 +205,7 @@ export default function LandingMarkup({
               position: "absolute",
               left: "clamp(20px,4vw,56px)",
               right: "clamp(20px,4vw,56px)",
-              bottom: "clamp(28px,5vh,48px)",
+              bottom: "clamp(28px,calc(var(--svh) * 5),48px)",
               zIndex: "2",
               pointerEvents: "none",
             }}
@@ -214,7 +218,7 @@ export default function LandingMarkup({
                 flexDirection: "column",
                 alignItems: "flex-start",
                 fontFamily: "var(--font-poppins), sans-serif",
-                fontSize: "min(4.2vw,7.5vh,96px)",
+                fontSize: "min(4.2vw,calc(var(--svh) * 7.5),96px)",
                 letterSpacing: "-.05em",
                 lineHeight: "1",
                 color: "#F3F2F2",
@@ -274,7 +278,7 @@ export default function LandingMarkup({
               position: "absolute",
               left: "0",
               right: "0",
-              bottom: "20vh",
+              bottom: "calc(var(--svh) * 20)",
               zIndex: "2",
               display: "flex",
               justifyContent: "center",
@@ -331,7 +335,7 @@ export default function LandingMarkup({
             style={{
               position: "absolute",
               right: "clamp(20px,4vw,56px)",
-              bottom: "clamp(28px,5vh,48px)",
+              bottom: "clamp(28px,calc(var(--svh) * 5),48px)",
               zIndex: "3",
               width: "clamp(200px,20vw,280px)",
               display: "flex",
@@ -628,7 +632,7 @@ export default function LandingMarkup({
             style={{
               position: "absolute",
               left: "50%",
-              bottom: "clamp(28px,5vh,48px)",
+              bottom: "clamp(28px,calc(var(--svh) * 5),48px)",
               transform: "translateX(-50%)",
               zIndex: "3",
             }}
@@ -671,6 +675,7 @@ export default function LandingMarkup({
               </span>
             </a>
           </div>
+          </div>
           {menu}
         </div>
       </div>
@@ -679,8 +684,8 @@ export default function LandingMarkup({
         style={{
           position: "relative",
           zIndex: "2",
-          marginTop: "-22svh",
-          padding: "clamp(40px,8vh,96px) clamp(20px,4vw,56px) clamp(80px,12vh,140px)",
+          marginTop: "calc(var(--svh) * -22)",
+          padding: "clamp(40px,calc(var(--svh) * 8),96px) clamp(20px,4vw,56px) clamp(80px,calc(var(--svh) * 12),140px)",
           background: "#0A0A0A",
         }}
       >
@@ -705,7 +710,7 @@ export default function LandingMarkup({
           data-reveal="1"
           style={{
             position: "relative",
-            height: "min(92vh,920px)",
+            height: "min(calc(var(--svh) * 92),920px)",
             overflow: "hidden",
             background: "#1E1E1E",
             clipPath: "inset(12% 9% 12% 9%)",
@@ -727,7 +732,7 @@ export default function LandingMarkup({
               position: "absolute",
               left: "clamp(20px,4vw,56px)",
               right: "clamp(20px,4vw,56px)",
-              bottom: "clamp(24px,5vh,56px)",
+              bottom: "clamp(24px,calc(var(--svh) * 5),56px)",
               display: "flex",
               justifyContent: "space-between",
               alignItems: "flex-end",
@@ -770,7 +775,7 @@ export default function LandingMarkup({
           position: "relative",
           background: "#0A0A0A",
           color: "#F3F2F2",
-          padding: "clamp(130px,22vh,240px) clamp(20px,4vw,56px) clamp(160px,28vh,300px)",
+          padding: "clamp(130px,calc(var(--svh) * 22),240px) clamp(20px,4vw,56px) clamp(160px,calc(var(--svh) * 28),300px)",
         }}
       >
         <div
@@ -786,7 +791,7 @@ export default function LandingMarkup({
             data-sleft="1"
             style={{
               position: "sticky",
-              top: "clamp(80px,14vh,140px)",
+              top: "clamp(80px,calc(var(--svh) * 14),140px)",
               display: "flex",
               flexDirection: "column",
               gap: "22px",
@@ -853,7 +858,7 @@ export default function LandingMarkup({
                 display: "flex",
                 alignItems: "center",
                 gap: "12px",
-                marginBottom: "clamp(16px,3vh,32px)",
+                marginBottom: "clamp(16px,calc(var(--svh) * 3),32px)",
                 fontSize: "15px",
                 fontWeight: "500",
                 color: "#F3F2F2",
@@ -872,7 +877,7 @@ export default function LandingMarkup({
                 paddingBottom: ".04em",
                 width: "max-content",
                 maxWidth: "100%",
-                fontSize: "min(6.4vw,11vh,124px)",
+                fontSize: "min(6.4vw,calc(var(--svh) * 11),124px)",
                 fontWeight: "600",
                 letterSpacing: "-.055em",
                 lineHeight: "1.02",
@@ -891,7 +896,7 @@ export default function LandingMarkup({
                 paddingBottom: ".04em",
                 width: "max-content",
                 maxWidth: "100%",
-                fontSize: "min(6.4vw,11vh,124px)",
+                fontSize: "min(6.4vw,calc(var(--svh) * 11),124px)",
                 fontWeight: "600",
                 letterSpacing: "-.055em",
                 lineHeight: "1.02",
@@ -910,7 +915,7 @@ export default function LandingMarkup({
                 paddingBottom: ".04em",
                 width: "max-content",
                 maxWidth: "100%",
-                fontSize: "min(6.4vw,11vh,124px)",
+                fontSize: "min(6.4vw,calc(var(--svh) * 11),124px)",
                 fontWeight: "600",
                 letterSpacing: "-.055em",
                 lineHeight: "1.02",
@@ -929,7 +934,7 @@ export default function LandingMarkup({
                 paddingBottom: ".04em",
                 width: "max-content",
                 maxWidth: "100%",
-                fontSize: "min(6.4vw,11vh,124px)",
+                fontSize: "min(6.4vw,calc(var(--svh) * 11),124px)",
                 fontWeight: "600",
                 letterSpacing: "-.055em",
                 lineHeight: "1.02",
@@ -948,7 +953,7 @@ export default function LandingMarkup({
                 paddingBottom: ".04em",
                 width: "max-content",
                 maxWidth: "100%",
-                fontSize: "min(6.4vw,11vh,124px)",
+                fontSize: "min(6.4vw,calc(var(--svh) * 11),124px)",
                 fontWeight: "600",
                 letterSpacing: "-.055em",
                 lineHeight: "1.02",
@@ -967,7 +972,7 @@ export default function LandingMarkup({
                 paddingBottom: ".04em",
                 width: "max-content",
                 maxWidth: "100%",
-                fontSize: "min(6.4vw,11vh,124px)",
+                fontSize: "min(6.4vw,calc(var(--svh) * 11),124px)",
                 fontWeight: "600",
                 letterSpacing: "-.055em",
                 lineHeight: "1.02",
@@ -1718,13 +1723,13 @@ export default function LandingMarkup({
         style={{
           position: "relative",
           zIndex: "5",
-          height: "520svh",
-          marginTop: "-125svh",
+          height: "calc(var(--svh) * 420 + var(--lvh) * 100)",
+          marginTop: "calc(var(--svh) * -125)",
           background: "transparent",
           pointerEvents: "none",
         }}
       >
-        <div style={{ position: "sticky", top: "0", height: "100svh", overflow: "hidden" }}>
+        <div style={{ position: "sticky", top: "0", height: "calc(var(--lvh) * 100)", overflow: "hidden" }}>
           <div
             data-show-dark="1"
             style={{ position: "absolute", inset: "0", background: "#050505", opacity: "0" }}
@@ -1776,7 +1781,7 @@ export default function LandingMarkup({
                 left: "0",
                 right: "0",
                 top: "0",
-                height: "22vh",
+                height: "calc(var(--svh) * 22)",
                 background: "linear-gradient(#050505,rgba(5,5,5,0))",
               }}
             ></div>
@@ -1786,11 +1791,15 @@ export default function LandingMarkup({
                 left: "0",
                 right: "0",
                 bottom: "0",
-                height: "22vh",
+                height: "calc(var(--svh) * 22)",
                 background: "linear-gradient(rgba(5,5,5,0),#050505)",
               }}
             ></div>
           </div>
+          <div
+            data-safe="1"
+            style={{ position: "absolute", top: "0", left: "0", right: "0", height: "calc(var(--svh) * 100)" }}
+          >
           <div
             data-show-words="1"
             style={{
@@ -1801,7 +1810,7 @@ export default function LandingMarkup({
               transform: "translateY(-50%)",
               display: "flex",
               alignItems: "center",
-              gap: "min(24vw,30vh)",
+              gap: "min(24vw,calc(var(--svh) * 30))",
               pointerEvents: "none",
               visibility: "hidden",
               textShadow: "0 0 48px rgba(5,5,5,.7)",
@@ -1866,7 +1875,7 @@ export default function LandingMarkup({
               position: "absolute",
               left: "0",
               right: "0",
-              top: "calc(50% + 24vh)",
+              top: "calc(50% + calc(var(--svh) * 24))",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -1900,6 +1909,7 @@ export default function LandingMarkup({
               <span style={{ color: "var(--acc)" }}>{"→"}</span>
             </Link>
           </div>
+          </div>
         </div>
       </section>
       <section
@@ -1908,14 +1918,14 @@ export default function LandingMarkup({
         data-screen-label="Case study"
         style={{ position: "relative", zIndex: "6", background: "#0A0A0A", color: "#F3F2F2" }}
       >
-        <div style={{ padding: "clamp(100px,16vh,180px) clamp(20px,4vw,56px) clamp(56px,9vh,100px)" }}>
+        <div style={{ padding: "clamp(100px,calc(var(--svh) * 16),180px) clamp(20px,4vw,56px) clamp(56px,calc(var(--svh) * 9),100px)" }}>
           <div
             style={{
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
               gap: "24px",
-              paddingBottom: "clamp(24px,4vh,40px)",
+              paddingBottom: "clamp(24px,calc(var(--svh) * 4),40px)",
             }}
           >
             <span
@@ -1975,7 +1985,7 @@ export default function LandingMarkup({
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))",
               gap: "24px",
-              marginTop: "clamp(48px,8vh,88px)",
+              marginTop: "clamp(48px,calc(var(--svh) * 8),88px)",
             }}
           >
             <div
@@ -2076,8 +2086,8 @@ export default function LandingMarkup({
             </div>
           </div>
         </div>
-        <div data-cpin="1" style={{ position: "relative", height: "320svh" }}>
-          <div style={{ position: "sticky", top: "0", height: "100svh", overflow: "hidden" }}>
+        <div data-cpin="1" style={{ position: "relative", height: "calc(var(--svh) * 220 + var(--lvh) * 100)" }}>
+          <div style={{ position: "sticky", top: "0", height: "calc(var(--lvh) * 100)", overflow: "hidden" }}>
             <div
               data-cframe="1"
               style={{
@@ -2999,7 +3009,7 @@ export default function LandingMarkup({
               style={{
                 position: "absolute",
                 left: "clamp(20px,4vw,56px)",
-                bottom: "clamp(20px,4vh,40px)",
+                bottom: "calc(clamp(20px,calc(var(--svh) * 4),40px) + (var(--lvh) - var(--svh)) * 100)",
                 zIndex: "3",
                 width: "min(440px,calc(100% - 40px))",
                 boxSizing: "border-box",
@@ -3160,7 +3170,7 @@ export default function LandingMarkup({
         </div>
         <div
           style={{
-            padding: "clamp(80px,14vh,160px) clamp(20px,4vw,56px) 0",
+            padding: "clamp(80px,calc(var(--svh) * 14),160px) clamp(20px,4vw,56px) 0",
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))",
             gap: "24px",
@@ -3239,7 +3249,7 @@ export default function LandingMarkup({
         <div
           data-cgal="1"
           style={{
-            padding: "clamp(80px,14vh,160px) clamp(20px,4vw,56px) clamp(60px,10vh,120px)",
+            padding: "clamp(80px,calc(var(--svh) * 14),160px) clamp(20px,4vw,56px) clamp(60px,calc(var(--svh) * 10),120px)",
             display: "grid",
             gridTemplateColumns: "repeat(12,minmax(0,1fr))",
             gap: "clamp(12px,2vw,28px)",
@@ -3349,7 +3359,7 @@ export default function LandingMarkup({
           </div>
           <div
             data-cpar="0.9"
-            style={{ gridColumn: "8 / span 5", marginTop: "24vh", willChange: "transform" }}
+            style={{ gridColumn: "8 / span 5", marginTop: "calc(var(--svh) * 24)", willChange: "transform" }}
           >
             <div
               data-crev="1"
@@ -3439,7 +3449,7 @@ export default function LandingMarkup({
           </div>
           <div
             data-cpar="0.3"
-            style={{ gridColumn: "3 / span 7", marginTop: "6vh", willChange: "transform" }}
+            style={{ gridColumn: "3 / span 7", marginTop: "calc(var(--svh) * 6)", willChange: "transform" }}
           >
             <div
               data-crev="1"
@@ -3533,7 +3543,7 @@ export default function LandingMarkup({
         </div>
         <div
           style={{
-            padding: "0 clamp(20px,4vw,56px) clamp(100px,16vh,180px)",
+            padding: "0 clamp(20px,4vw,56px) clamp(100px,calc(var(--svh) * 16),180px)",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "flex-end",
@@ -3600,7 +3610,7 @@ export default function LandingMarkup({
           zIndex: "6",
           background: "#F3F2F2",
           color: "#0A0A0A",
-          padding: "clamp(100px,16vh,180px) clamp(20px,4vw,56px) clamp(80px,12vh,140px)",
+          padding: "clamp(100px,calc(var(--svh) * 16),180px) clamp(20px,4vw,56px) clamp(80px,calc(var(--svh) * 12),140px)",
         }}
       >
         <div
@@ -3609,7 +3619,7 @@ export default function LandingMarkup({
             justifyContent: "space-between",
             alignItems: "flex-end",
             gap: "24px",
-            paddingBottom: "clamp(28px,5vh,48px)",
+            paddingBottom: "clamp(28px,calc(var(--svh) * 5),48px)",
           }}
         >
           <h2
@@ -3646,7 +3656,7 @@ export default function LandingMarkup({
             display: "grid",
             gridTemplateColumns: "minmax(0,1fr) minmax(0,1.1fr)",
             gap: "clamp(24px,5vw,80px)",
-            padding: "clamp(40px,7vh,80px) 0",
+            padding: "clamp(40px,calc(var(--svh) * 7),80px) 0",
             borderTop: "1px solid #D4D1CF",
           }}
         >
@@ -3910,7 +3920,7 @@ export default function LandingMarkup({
             display: "grid",
             gridTemplateColumns: "minmax(0,1fr) minmax(0,1.1fr)",
             gap: "clamp(24px,5vw,80px)",
-            padding: "clamp(40px,7vh,80px) 0",
+            padding: "clamp(40px,calc(var(--svh) * 7),80px) 0",
             borderTop: "1px solid #D4D1CF",
           }}
         >
@@ -4174,7 +4184,7 @@ export default function LandingMarkup({
             display: "grid",
             gridTemplateColumns: "minmax(0,1fr) minmax(0,1.1fr)",
             gap: "clamp(24px,5vw,80px)",
-            padding: "clamp(40px,7vh,80px) 0",
+            padding: "clamp(40px,calc(var(--svh) * 7),80px) 0",
             borderTop: "1px solid #D4D1CF",
           }}
         >
@@ -4441,7 +4451,7 @@ export default function LandingMarkup({
             alignItems: "center",
             gap: "24px",
             flexWrap: "wrap",
-            paddingTop: "clamp(32px,6vh,64px)",
+            paddingTop: "clamp(32px,calc(var(--svh) * 6),64px)",
             borderTop: "1px solid #D4D1CF",
           }}
         >
@@ -4505,14 +4515,14 @@ export default function LandingMarkup({
             clipPath: "inset(0 3vw 0 3vw round 24px)",
           }}
         >
-          <div style={{ padding: "clamp(120px,20vh,220px) clamp(20px,4vw,56px) 0" }}>
+          <div style={{ padding: "clamp(120px,calc(var(--svh) * 20),220px) clamp(20px,4vw,56px) 0" }}>
             <div
               style={{
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
                 gap: "24px",
-                paddingBottom: "clamp(28px,5vh,48px)",
+                paddingBottom: "clamp(28px,calc(var(--svh) * 5),48px)",
               }}
             >
               <span
@@ -4574,7 +4584,7 @@ export default function LandingMarkup({
               gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,380px),1fr))",
               gap: "clamp(32px,5vw,80px)",
               alignItems: "end",
-              padding: "clamp(56px,10vh,110px) clamp(20px,4vw,56px) 0",
+              padding: "clamp(56px,calc(var(--svh) * 10),110px) clamp(20px,4vw,56px) 0",
             }}
           >
             <p
@@ -4602,7 +4612,7 @@ export default function LandingMarkup({
                 justifyContent: "space-between",
                 gap: "24px",
                 width: "100%",
-                height: "clamp(84px,12vh,112px)",
+                height: "clamp(84px,calc(var(--svh) * 12),112px)",
                 padding: "0 10px 0 clamp(20px,2.4vw,36px)",
                 background: "#F3F2F2",
                 color: "#0A0A0A",
@@ -4642,8 +4652,8 @@ export default function LandingMarkup({
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  width: "clamp(64px,9vh,92px)",
-                  height: "clamp(64px,9vh,92px)",
+                  width: "clamp(64px,calc(var(--svh) * 9),92px)",
+                  height: "clamp(64px,calc(var(--svh) * 9),92px)",
                   background: "#0A0A0A",
                   color: "#F3F2F2",
                   fontSize: "24px",
@@ -4664,7 +4674,7 @@ export default function LandingMarkup({
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))",
               gap: "24px",
-              padding: "clamp(56px,10vh,110px) clamp(20px,4vw,56px) 0",
+              padding: "clamp(56px,calc(var(--svh) * 10),110px) clamp(20px,4vw,56px) 0",
             }}
           >
             <a
@@ -4793,7 +4803,7 @@ export default function LandingMarkup({
               display: "flex",
               alignItems: "flex-end",
               gap: ".06em",
-              padding: "clamp(72px,14vh,160px) clamp(20px,4vw,56px) 0",
+              padding: "clamp(72px,calc(var(--svh) * 14),160px) clamp(20px,4vw,56px) 0",
               fontSize: "clamp(96px,23vw,440px)",
               lineHeight: ".78",
               letterSpacing: "-.06em",
@@ -5045,7 +5055,7 @@ export default function LandingMarkup({
               width: "100%",
               maxWidth: "1100px",
               boxSizing: "border-box",
-              padding: "clamp(24px,5vh,56px) clamp(20px,4vw,56px)",
+              padding: "clamp(24px,calc(var(--svh) * 5),56px) clamp(20px,4vw,56px)",
             }}
           >
             <div
@@ -5054,7 +5064,7 @@ export default function LandingMarkup({
                 display: "flex",
                 alignItems: "center",
                 gap: "16px",
-                marginBottom: "clamp(28px,5vh,48px)",
+                marginBottom: "clamp(28px,calc(var(--svh) * 5),48px)",
               }}
             >
               <span
@@ -5099,14 +5109,14 @@ export default function LandingMarkup({
                   gridArea: "1 / 1",
                   display: "flex",
                   flexDirection: "column",
-                  gap: "clamp(24px,4vh,40px)",
+                  gap: "clamp(24px,calc(var(--svh) * 4),40px)",
                 }}
               >
                 <h3
                   style={{
                     margin: "0",
                     fontFamily: "var(--font-poppins), sans-serif",
-                    fontSize: "clamp(36px,min(6vw,9vh),96px)",
+                    fontSize: "clamp(36px,min(6vw,calc(var(--svh) * 9)),96px)",
                     letterSpacing: "-.06em",
                     lineHeight: ".95",
                   }}
@@ -5239,7 +5249,7 @@ export default function LandingMarkup({
                   gridArea: "1 / 1",
                   display: "flex",
                   flexDirection: "column",
-                  gap: "clamp(24px,4vh,40px)",
+                  gap: "clamp(24px,calc(var(--svh) * 4),40px)",
                   visibility: "hidden",
                 }}
               >
@@ -5247,7 +5257,7 @@ export default function LandingMarkup({
                   style={{
                     margin: "0",
                     fontFamily: "var(--font-poppins), sans-serif",
-                    fontSize: "clamp(36px,min(6vw,9vh),96px)",
+                    fontSize: "clamp(36px,min(6vw,calc(var(--svh) * 9)),96px)",
                     letterSpacing: "-.06em",
                     lineHeight: ".95",
                   }}
@@ -5454,7 +5464,7 @@ export default function LandingMarkup({
                   gridArea: "1 / 1",
                   display: "flex",
                   flexDirection: "column",
-                  gap: "clamp(24px,4vh,40px)",
+                  gap: "clamp(24px,calc(var(--svh) * 4),40px)",
                   visibility: "hidden",
                 }}
               >
@@ -5462,7 +5472,7 @@ export default function LandingMarkup({
                   style={{
                     margin: "0",
                     fontFamily: "var(--font-poppins), sans-serif",
-                    fontSize: "clamp(36px,min(6vw,9vh),96px)",
+                    fontSize: "clamp(36px,min(6vw,calc(var(--svh) * 9)),96px)",
                     letterSpacing: "-.06em",
                     lineHeight: ".95",
                   }}
@@ -5592,7 +5602,7 @@ export default function LandingMarkup({
                   gridArea: "1 / 1",
                   display: "flex",
                   flexDirection: "column",
-                  gap: "clamp(24px,4vh,40px)",
+                  gap: "clamp(24px,calc(var(--svh) * 4),40px)",
                   visibility: "hidden",
                 }}
               >
@@ -5601,7 +5611,7 @@ export default function LandingMarkup({
                   viewBox="-3 -3 46 70"
                   style={{
                     display: "block",
-                    height: "clamp(72px,12vh,120px)",
+                    height: "clamp(72px,calc(var(--svh) * 12),120px)",
                     width: "auto",
                     overflow: "visible",
                   }}
@@ -5626,7 +5636,7 @@ export default function LandingMarkup({
                   style={{
                     margin: "0",
                     fontFamily: "var(--font-poppins), sans-serif",
-                    fontSize: "clamp(36px,min(6vw,9vh),96px)",
+                    fontSize: "clamp(36px,min(6vw,calc(var(--svh) * 9)),96px)",
                     letterSpacing: "-.06em",
                     lineHeight: ".95",
                   }}
@@ -5664,7 +5674,7 @@ export default function LandingMarkup({
                 justifyContent: "space-between",
                 alignItems: "center",
                 gap: "16px",
-                marginTop: "clamp(36px,7vh,64px)",
+                marginTop: "clamp(36px,calc(var(--svh) * 7),64px)",
               }}
             >
               <button
@@ -5776,7 +5786,7 @@ export default function LandingMarkup({
               position: "absolute",
               left: "clamp(20px,4vw,56px)",
               right: "clamp(20px,4vw,56px)",
-              top: "clamp(20px,4vh,32px)",
+              top: "clamp(20px,calc(var(--svh) * 4),32px)",
               display: "flex",
               justifyContent: "space-between",
               gap: "24px",
@@ -5850,7 +5860,7 @@ export default function LandingMarkup({
               position: "absolute",
               left: "clamp(20px,4vw,56px)",
               right: "clamp(20px,4vw,56px)",
-              bottom: "clamp(20px,4vh,40px)",
+              bottom: "clamp(20px,calc(var(--svh) * 4),40px)",
               display: "flex",
               justifyContent: "space-between",
               alignItems: "flex-end",

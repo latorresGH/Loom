@@ -96,7 +96,8 @@ export default function Landing() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        padding: "110px clamp(20px,4vw,56px) clamp(28px,5vh,48px)",
+        padding:
+          "110px clamp(20px,4vw,56px) calc(clamp(28px,calc(var(--svh) * 5),48px) + (var(--lvh) - var(--svh)) * 100)",
         boxSizing: "border-box",
       }}
     >

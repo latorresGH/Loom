@@ -1,4 +1,9 @@
 :root{--acc:#CFF27E}
+/* Viewport units used by the landing. The engine replaces them with fixed px values so that
+   nothing reflows when a phone's URL bar hides or shows (lib/landing-engine.ts, initViewport). */
+:root{--svh:1vh;--lvh:1vh}
+@supports (height:1svh){:root{--svh:1svh;--lvh:1lvh}}
+html{overscroll-behavior-y:none}
 html,body{margin:0;background:#0A0A0A;color:#F3F2F2;font-family:var(--font-poppins),sans-serif;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 a:hover{color:#FFFFFF}

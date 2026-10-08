@@ -9,6 +9,8 @@ const P = { accent: "#CFF27E", showWord: true, dispersion: 4 };
 export class LandingEngine {
   sp = 0;
   vh = 0;
+  lvh = 0;
+  vpHooks = [];
   dead = false;
   off = [];
   langHooks = [];
@@ -40,17 +42,42 @@ export class LandingEngine {
     return id;
   }
 
-  // Stable viewport height: the "small" viewport (100svh), which is what the pinned panels use.
-  // window.innerHeight changes every time a phone's URL bar hides or shows, and made the
-  // scroll-driven math jump.
+  // Single source of truth for the viewport height.
+  // `vh` is the small viewport (URL bar visible) and `lvh` the large one. Both are measured with
+  // fixed probes, written to --svh / --lvh as px, and only re-measured when the width or the
+  // orientation changes: a phone's URL bar hiding or showing must not move anything.
   initViewport() {
-    const probe = document.createElement('div');
-    probe.style.cssText = 'position:fixed;top:0;left:0;width:0;height:100svh;visibility:hidden;pointer-events:none';
-    document.body.appendChild(probe);
-    const measure = () => { this.vh = probe.offsetHeight || window.innerHeight; };
+    const mk = (unit) => { const el = document.createElement('div'); el.style.cssText = `position:fixed;top:0;left:0;width:0;height:100${unit};visibility:hidden;pointer-events:none`; document.body.appendChild(el); return el; };
+    const ps = mk('svh'), pl = mk('lvh'), de = document.documentElement;
+    const touch = matchMedia('(pointer: coarse)');
+    let lastW = -1, lastO = '';
+    const orient = () => (screen.orientation && screen.orientation.type) || '';
+    const measure = () => {
+      const s = ps.offsetHeight || window.innerHeight, l = Math.max(pl.offsetHeight || s, s);
+      lastW = window.innerWidth; lastO = orient();
+      if (s === this.vh && l === this.lvh) return;
+      this.vh = s; this.lvh = l;
+      de.style.setProperty('--svh', s / 100 + 'px'); de.style.setProperty('--lvh', l / 100 + 'px');
+      this.vpHooks.forEach((f) => { try { f(); } catch {} });
+    };
     measure();
-    this.on(window, 'resize', measure);
-    this.off.push(() => probe.remove());
+    this.on(window, 'resize', () => {
+      const s = ps.offsetHeight || window.innerHeight;
+      // Height-only changes under 150px on touch devices are the URL bar: ignore them.
+      if (touch.matches && window.innerWidth === lastW && orient() === lastO && Math.abs(s - this.vh) < 150) return;
+      measure();
+    });
+    this.off.push(() => { ps.remove(); pl.remove(); de.style.removeProperty('--svh'); de.style.removeProperty('--lvh'); });
+  }
+
+  // Sizes a WebGL host with a ResizeObserver, so the renderer is only resized when the host really changed.
+  watchSize(host, layout) {
+    let w = -1, h = -1;
+    const run = () => { const cw = host.clientWidth, ch = host.clientHeight; if (cw === w && ch === h) return; w = cw; h = ch; layout(); };
+    const ro = new ResizeObserver(run); ro.observe(host);
+    this.vpHooks.push(layout);
+    run();
+    this.off.push(() => ro.disconnect());
   }
 
   refreshLang() {
@@ -66,6 +93,7 @@ export class LandingEngine {
     this.off.forEach((f) => { try { f(); } catch {} });
     this.off = [];
     this.langHooks = [];
+    this.vpHooks = [];
     this.ac.abort();
     this.timers.forEach((id) => clearTimeout(id));
     this.timers.clear();
@@ -130,7 +158,7 @@ export class LandingEngine {
     import('lenis').then((mod) => {
       if (this.dead) return;
       const Lenis = mod.default || mod.Lenis;
-      const lenis = new Lenis({ duration: 1.6, easing: (t) => 1 - Math.pow(1 - t, 4), smoothWheel: true, wheelMultiplier: 0.9, touchMultiplier: 1.4 });
+      const lenis = new Lenis({ duration: 1.6, easing: (t) => 1 - Math.pow(1 - t, 4), smoothWheel: true, syncTouch: false, wheelMultiplier: 0.9, touchMultiplier: 1.4 });
       this.lenis = lenis;
       let lr = 0;
       const lf = (t) => { lenis.raf(t); lr = requestAnimationFrame(lf); };
@@ -153,7 +181,7 @@ export class LandingEngine {
 
     const title = root.querySelector('[data-title]'), hint = root.querySelector('[data-hint]'), end = root.querySelector('[data-end]');
     const words = Array.from(root.querySelectorAll('[data-word]'));
-    const heroSec = root.querySelector('[data-herosec]'), man = root.querySelector('[data-manifesto]');
+    const heroSec = root.querySelector('[data-herosec]'), heroPin = heroSec.firstElementChild, man = root.querySelector('[data-manifesto]');
     let mw = Array.from(root.querySelectorAll('[data-w]'));
     const rev = root.querySelector('[data-reveal]'), revImg = root.querySelector('[data-reveal-img]');
     const svc = root.querySelector('[data-svc]');
@@ -263,7 +291,7 @@ export class LandingEngine {
     const tick = () => {
       if (this.dead) return;
       raf = requestAnimationFrame(tick);
-      const r = heroSec.getBoundingClientRect(), span = r.height - this.vh;
+      const r = heroSec.getBoundingClientRect(), span = r.height - heroPin.offsetHeight;
       const target = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 0;
       this.sp += (target - this.sp) * 0.12;
       const p = Math.min(1, this.sp / 0.76), ex = ss(0.78, 0.98, this.sp);
@@ -344,7 +372,7 @@ export class LandingEngine {
     // Phones: the mock site sits above the step card instead of behind it.
     const cMq = matchMedia('(max-width: 700px)');
     const fit = () => { frame.style.bottom = cMq.matches ? Math.max(0, frame.parentNode.clientHeight - panel.offsetTop + 12) + 'px' : '0px'; };
-    fit(); this.on(window, 'resize', fit); this.on(cMq, 'change', fit); this.langHooks.push(fit);
+    fit(); this.vpHooks.push(fit); this.on(cMq, 'change', fit); this.langHooks.push(fit);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (!this.dead) fit(); });
     let cur = -1;
     const show = (i) => {
@@ -356,7 +384,7 @@ export class LandingEngine {
     const tick = () => {
       if (this.dead) return;
       raf = requestAnimationFrame(tick);
-      const vh = this.vh, r = pin.getBoundingClientRect(), span = Math.max(1, r.height - vh);
+      const vh = this.vh, r = pin.getBoundingClientRect(), span = Math.max(1, r.height - pin.firstElementChild.offsetHeight);
       const p = cl(-r.top / span);
       sm += (p - sm) * 0.14;
       const a = eio(cl(sm / 0.28));
@@ -687,12 +715,18 @@ export class LandingEngine {
     cubeCam.position.set(0, 0, -36); scene.add(cubeCam);
     const key = new THREE.DirectionalLight(0xffffff, 2); key.position.set(-30, 40, 20); scene.add(key);
 
+    // The canvas covers the large viewport; the camera frames the small one and the extra rows
+    // extend below it, so the scene sits exactly where it did with a 100svh canvas.
+    let below = 1;
     const layout = () => {
-      const w = host.clientWidth || 1, hh = host.clientHeight || 1;
+      const w = host.clientWidth || 1, hh = host.clientHeight || 1, hs = Math.min(hh, this.vh || hh);
+      below = 2 * hh / hs - 1;
       renderer.setSize(w, hh, false);
-      camera.aspect = w / hh; camera.fov = camera.aspect < 0.8 ? 70 : 60; camera.updateProjectionMatrix();
+      camera.aspect = w / hs; camera.fov = camera.aspect < 0.8 ? 70 : 60;
+      if (hh !== hs) camera.setViewOffset(w, hs, 0, 0, w, hh); else camera.clearViewOffset();
+      camera.updateProjectionMatrix();
     };
-    layout(); window.addEventListener('resize', layout);
+    this.watchSize(host, layout);
 
     let raf = 0, vis = false, last = performance.now(), spin = 0, sm = 0;
     const rowA = rows.map(() => 0);
@@ -724,7 +758,7 @@ export class LandingEngine {
       const halfH = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * 36;
       const sc = Math.min(0.21, (halfH * 2 * 0.42) / 70, (halfH * camera.aspect * 2 * 0.5) / 46);
       logo.scale.setScalar(sc * (1 + (1 - rise) * 0.35));
-      logo.position.y = (1 - rise) * -(halfH + 70 * sc * 0.9);
+      logo.position.y = (1 - rise) * -(halfH * below + 70 * sc * 0.9);
       spin += dt * 0.25;
       logo.rotation.y = u * 1.15 - 1.2 + Math.sin(spin) * 0.12;
       logo.rotation.x = (1 - rise) * 0.25;
@@ -734,7 +768,7 @@ export class LandingEngine {
       rows.forEach((rw, i) => { rw.g.visible = show > 0.002; rw.g.scale.setScalar(1); rw.g.position.y = rowsCfg[i].y - (1 - rise) * 40; });
       const cta = eo(1.3, 1.85, w);
       const wv = eo(1.0, 1.75, w);
-      const et = Math.min(1, Math.max(0, 1 - (r.bottom - vh) / (0.9 * vh))), endE = et * et * (3 - 2 * et);
+      const et = Math.min(1, Math.max(0, 1 - (r.bottom - host.clientHeight) / (0.9 * vh))), endE = et * et * (3 - 2 * et);
       wordsEl.style.visibility = wv > 0.001 && endE < 0.999 ? 'visible' : 'hidden';
       swL.style.transform = `translate3d(calc(${((1 - wv) * 105).toFixed(2)}% - ${(endE * 16).toFixed(2)}vw),0,0)`;
       swR.style.transform = `translate3d(calc(${(-(1 - wv) * 105).toFixed(2)}% + ${(endE * 16).toFixed(2)}vw),0,0)`;
@@ -755,7 +789,6 @@ export class LandingEngine {
 
     this.off.push(() => {
       cancelAnimationFrame(raf); io.disconnect();
-      window.removeEventListener('resize', layout);
       if (svcEl) { svcEl.style.transform = ''; svcEl.style.filter = ''; svcEl.style.opacity = ''; svcEl.style.visibility = ''; }
       geos.forEach((g) => g.dispose()); mats.forEach((mt) => mt.dispose()); texs.forEach((t) => t.dispose()); alphaTex.dispose();
       gTop.dispose(); gBot.dispose(); gm.dispose(); cubeRT.dispose(); backdrop.geometry.dispose(); backdrop.material.dispose(); envTex0.dispose(); envTex.dispose(); pmrem.dispose(); renderer.dispose();
@@ -894,17 +927,19 @@ export class LandingEngine {
 
     let base = { y: 0, sc: 0.6 };
     const layout = () => {
-      const w = host.clientWidth || 1, h = host.clientHeight || 1;
+      const w = host.clientWidth || 1, h = host.clientHeight || 1, hs = Math.min(h, this.vh || h);
       renderer.setSize(w, h, false);
-      camera.aspect = w / h; camera.updateProjectionMatrix();
+      camera.aspect = w / hs;
+      if (h !== hs) camera.setViewOffset(w, hs, 0, 0, w, h); else camera.clearViewOffset();
+      camera.updateProjectionMatrix();
       const vh = 2 * 170 * Math.tan(THREE.MathUtils.degToRad(15)), vw = vh * camera.aspect;
       base = { y: vh * 0.06, sc: Math.min(0.62, (vh * 0.46) / 70, (vw * 0.7) / 46) };
       const bh = 2 * 240 * Math.tan(THREE.MathUtils.degToRad(15)), bw = bh * camera.aspect;
       const W = Math.max(bw * 1.04, bh * 2.08);
-      bg.scale.set(W, W / 2, 1);
+      const k = 2 * h / hs - 1;
+      bg.scale.set(W * k, (W / 2) * k, 1);
     };
-    layout();
-    window.addEventListener('resize', layout);
+    this.watchSize(host, layout);
     const m = { x: 0, y: 0, tx: 0, ty: 0 };
     const pm = (e) => { m.tx = (e.clientX / window.innerWidth) * 2 - 1; m.ty = (e.clientY / window.innerHeight) * 2 - 1; };
     window.addEventListener('pointermove', pm);
@@ -939,7 +974,7 @@ export class LandingEngine {
 
     this.off.push(() => {
       cancelAnimationFrame(raf); io.disconnect();
-      window.removeEventListener('resize', layout); window.removeEventListener('pointermove', pm);
+      window.removeEventListener('pointermove', pm);
       gTop.dispose(); gBot.dispose(); mat.dispose(); bgMat.dispose(); bg.geometry.dispose(); envTex0.dispose(); envTex.dispose(); pmrem.dispose(); renderer.dispose();
       if (renderer.domElement.parentNode) renderer.domElement.parentNode.removeChild(renderer.domElement);
     });
