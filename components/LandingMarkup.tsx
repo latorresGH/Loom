@@ -1,6 +1,5 @@
-/* eslint-disable react/no-unescaped-entities */
 // Generated from the Claude Design mockup (Loom IT Hero v5) and then maintained by hand.
-import type { ReactNode, Ref } from "react";
+import type { CSSProperties, ReactNode, Ref } from "react";
 import Link from "next/link";
 
 export type LandingMarkupProps = {
@@ -27,13 +26,15 @@ export default function LandingMarkup({
   return (
     <div
       ref={rootRef}
-      style={{
-        "--acc": "#CFF27E",
-        position: "relative",
-        background: "#0A0A0A",
-        color: "#F3F2F2",
-        fontFamily: "var(--font-poppins), sans-serif",
-      }}
+      style={
+        {
+          "--acc": "#CFF27E",
+          position: "relative",
+          background: "#0A0A0A",
+          color: "#F3F2F2",
+          fontFamily: "var(--font-poppins), sans-serif",
+        } as CSSProperties
+      }
     >
       <div data-herosec="1" style={{ position: "relative", height: "240vh" }}>
         <div style={{ position: "sticky", top: "0", height: "100svh", overflow: "hidden" }}>
@@ -421,7 +422,6 @@ export default function LandingMarkup({
                         style={{
                           display: "block",
                           width: "30%",
-                          height: "11%",
                           background: "var(--acc)",
                           height: "auto",
                           aspectRatio: "3/1",
@@ -431,7 +431,6 @@ export default function LandingMarkup({
                         style={{
                           display: "block",
                           width: "22%",
-                          height: "11%",
                           background: "transparent",
                           height: "auto",
                           aspectRatio: "3/1",
@@ -1331,7 +1330,6 @@ export default function LandingMarkup({
                             width: "100%",
                             height: "40%",
                             background: "#3A3A3A",
-                            flex: "none",
                             flex: "1",
                           }}
                         ></span>
@@ -1341,7 +1339,6 @@ export default function LandingMarkup({
                             width: "100%",
                             height: "62%",
                             background: "#3A3A3A",
-                            flex: "none",
                             flex: "1",
                           }}
                         ></span>
@@ -1351,7 +1348,6 @@ export default function LandingMarkup({
                             width: "100%",
                             height: "48%",
                             background: "#3A3A3A",
-                            flex: "none",
                             flex: "1",
                           }}
                         ></span>
@@ -1361,7 +1357,6 @@ export default function LandingMarkup({
                             width: "100%",
                             height: "80%",
                             background: "#3A3A3A",
-                            flex: "none",
                             flex: "1",
                           }}
                         ></span>
@@ -1371,7 +1366,6 @@ export default function LandingMarkup({
                             width: "100%",
                             height: "66%",
                             background: "#3A3A3A",
-                            flex: "none",
                             flex: "1",
                           }}
                         ></span>
@@ -1381,7 +1375,6 @@ export default function LandingMarkup({
                             width: "100%",
                             height: "92%",
                             background: "var(--acc)",
-                            flex: "none",
                             flex: "1",
                           }}
                         ></span>
