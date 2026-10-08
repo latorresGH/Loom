@@ -142,7 +142,7 @@ export default function Landing() {
           {"loomit.devs@gmail.com"}
         </a>
         <div style={{ display: "flex", gap: "28px" }}>
-          <a href="https://www.instagram.com/loomit.devs/" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/loomit.social/" target="_blank" rel="noopener noreferrer">
             {"Instagram"}
           </a>
         </div>

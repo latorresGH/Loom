@@ -4727,7 +4727,7 @@ export default function LandingMarkup({
             <a
               data-ctf="1"
               data-ctl="1"
-              href="https://www.instagram.com/loomit.devs/"
+              href="https://www.instagram.com/loomit.social/"
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -4760,7 +4760,7 @@ export default function LandingMarkup({
                 }}
               >
                 <span style={{ position: "relative" }}>
-                  {"@loomit.devs"}
+                  {"@loomit.social"}
                   <span
                     data-ctu="1"
                     style={{
