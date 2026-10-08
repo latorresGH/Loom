@@ -16,23 +16,13 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
-  icons: {
-    icon: [
-      { url: "/favicon.ico", media: "(prefers-color-scheme: dark)" },
-      { url: "/favicon-light.ico", media: "(prefers-color-scheme: light)" },
-    ],
-    apple: [
-      { url: "/loom-doubleo-180.png", media: "(prefers-color-scheme: dark)" },
-      { url: "/loom-doubleo-light-180.png", media: "(prefers-color-scheme: light)" },
-    ],
-  },
   openGraph: {
     title,
     description,
     type: "website",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title,
     description,
   },
