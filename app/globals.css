@@ -23,3 +23,20 @@ body{scrollbar-width:none}
 
 /* "Proyectos" is wider than "Selected": at the mockup's 40px minimum it gets clipped on phones. */
 @media (max-width:480px){html[lang="es"] [data-sw]{font-size:32px !important}}
+
+/* Case study on phones: the mock barbershop site stacks like a real mobile page,
+   and the gallery becomes a single column. Desktop is untouched. */
+@media (max-width:700px){
+  [data-cshot]{height:auto !important}
+  [data-cshot-in],.cmock{position:relative !important;inset:auto !important}
+  .cmock>div{flex:none !important}
+  .cmock>div:nth-child(1)>span:nth-child(2){display:none !important}
+  .cmock>div:nth-child(2){grid-template-columns:minmax(0,1fr) !important;gap:28px !important;padding:36px 5% !important}
+  .cmock>div:nth-child(3){padding:32px 5% !important}
+  .cmock>div:nth-child(3)>div{grid-template-columns:minmax(0,1fr) !important}
+  .cmock>div:nth-child(4){grid-template-columns:minmax(0,1fr) !important;gap:28px !important;padding:32px 5% !important}
+  .cmock>div:nth-child(4)>div:first-child>div>div{grid-template-columns:44px minmax(0,1fr) minmax(0,1fr) auto !important;gap:10px !important;font-size:13px !important}
+  .cmock>div:nth-child(5){padding:28px 5% !important}
+  [data-cgal]{grid-template-columns:minmax(0,1fr) !important;row-gap:28px !important}
+  [data-cgal]>[data-cpar]{grid-column:1 / -1 !important;margin-top:0 !important}
+}

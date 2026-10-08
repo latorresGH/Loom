@@ -341,6 +341,11 @@ export class LandingEngine {
     const par = Array.from(sec.querySelectorAll('[data-cpar]')), imgs = Array.from(sec.querySelectorAll('[data-crev-img]'));
     steps.forEach((ls) => ls.forEach((l) => { l.style.transform = 'translateY(110%)'; }));
     cnt.textContent = '01';
+    // Phones: the mock site sits above the step card instead of behind it.
+    const cMq = matchMedia('(max-width: 700px)');
+    const fit = () => { frame.style.bottom = cMq.matches ? Math.max(0, frame.parentNode.clientHeight - panel.offsetTop + 12) + 'px' : '0px'; };
+    fit(); this.on(window, 'resize', fit); this.on(cMq, 'change', fit); this.langHooks.push(fit);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (!this.dead) fit(); });
     let cur = -1;
     const show = (i) => {
       if (cur >= 0) steps[cur].forEach((l, j) => { l.getAnimations().forEach((a) => a.cancel()); l.animate([{ transform: 'translateY(0)' }, { transform: 'translateY(-110%)' }], { duration: 450, delay: j * 40, easing: ezIn, fill: 'forwards' }); });
@@ -370,7 +375,7 @@ export class LandingEngine {
       const tilt = Math.max(-2.5, Math.min(2.5, vel * 0.06));
       par.forEach((el, k) => {
         const rr = el.getBoundingClientRect(), c = (rr.top + rr.height / 2 - vh / 2) / vh;
-        el.style.transform = `translate3d(0,${(c * +el.dataset.cpar * 120).toFixed(1)}px,0) rotate(${(tilt * (k % 2 ? -1 : 1)).toFixed(2)}deg)`;
+        el.style.transform = `translate3d(0,${(c * +el.dataset.cpar * (cMq.matches ? 36 : 120)).toFixed(1)}px,0) rotate(${(tilt * (k % 2 ? -1 : 1)).toFixed(2)}deg)`;
         imgs[k].style.translate = `0 ${(-c * 40).toFixed(1)}px`;
       });
     };

@@ -2136,6 +2136,7 @@ export default function LandingMarkup({
               >
                 <div data-cshot-in="1" style={{ position: "absolute", inset: "0", transformOrigin: "50% 0" }}>
                   <div
+                    className="cmock"
                     style={{
                       position: "absolute",
                       inset: "0",
